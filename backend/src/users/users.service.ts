@@ -27,10 +27,8 @@ export class UsersService {
 
   findAll() {
     return this.prisma.users.findMany();
-  } catch (error) {
-    console.error('Ошибка при получении всех пользователей:', error);
-    throw new Error('Не удалось получить всех пользователей.');
   }
+  
 
 
   findOne(id: number) {
