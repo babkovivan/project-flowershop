@@ -38,8 +38,8 @@ const FavoritesPage = ({ favorites, toggleFavorite }) => {
   );
 
   return (
-    <section className="bg-[#c6cbd8] py-12 px-4 min-h-[70vh]">
-      <div className="max-w-5xl mx-auto">
+    <section className="bg-[#c6cbd8] py-12 px-4 min-h-[70vh] mx-auto max-w-4xl my-2 rounded-lg">
+      <div className="max-w-4xl mx-auto bg-[#e5e5e5] p-8 rounded-lg shadow-md">
         <h2 className="text-4xl font-condensed tracking-wide mb-8">Избранное</h2>
         {favoriteProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

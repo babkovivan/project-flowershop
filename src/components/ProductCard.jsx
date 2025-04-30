@@ -1,8 +1,13 @@
 import React from "react";
 
-const ProductCard = ({ product, isFavorite, toggleFavorite }) => {
+const ProductCard = ({ product, isFavorite, toggleFavorite, isCatalog }) => {
   return (
-    <div className="relative w-[260px] bg-white rounded-xl overflow-hidden shadow-md flex-shrink-0 text-center mx-auto">
+    <div
+      className={`relative ${
+        isCatalog ? "w-[190px]" : "w-[260px]"
+      } bg-white rounded-xl overflow-hidden shadow-md flex-shrink-0 text-center mx-auto`}
+    >
+      {/* Кнопка "Избранное" */}
       <button
         onClick={() => toggleFavorite(product.id)}
         className="absolute top-2 right-2 text-xl"
@@ -10,11 +15,14 @@ const ProductCard = ({ product, isFavorite, toggleFavorite }) => {
         {isFavorite ? "❤️" : "🤍"}
       </button>
 
+      {/* Изображение товара */}
       <img
         src={product.image}
         alt={product.title}
-        className="w-full h-60 object-cover"
+        className={`w-full ${isCatalog ? "h-56" : "h-60"} object-cover`}
       />
+
+      {/* Описание товара */}
       <div className="p-4">
         <h3 className="font-semibold">{product.title}</h3>
         <p className="text-sm text-gray-600">{product.description}</p>

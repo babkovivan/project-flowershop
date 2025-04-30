@@ -50,7 +50,7 @@ const PopularSection = () => {
   };
 
   return (
-    <section className="bg-[#c6cbd8] py-12">
+    <section className="bg-[#c6cbd8] py-12 mx-auto max-w-4xl my-2 rounded-lg">
       <div className="max-w-4xl mx-auto px-4">
         <h2 className="text-4xl font-condensed tracking-wide mb-8">
           Популярные<br />товары
