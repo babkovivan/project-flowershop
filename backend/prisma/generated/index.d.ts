@@ -8406,7 +8406,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number: string | null
+    phone_number: string
     password: string
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
@@ -8491,7 +8491,7 @@ export namespace Prisma {
       first_name: string
       last_name: string
       email: string
-      phone_number: string | null
+      phone_number: string
       password: string
     }, ExtArgs["result"]["users"]>
     composites: {}
@@ -9946,7 +9946,7 @@ export namespace Prisma {
     first_name?: StringFilter<"users"> | string
     last_name?: StringFilter<"users"> | string
     email?: StringFilter<"users"> | string
-    phone_number?: StringNullableFilter<"users"> | string | null
+    phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
@@ -9958,7 +9958,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrderInput | SortOrder
+    phone_number?: SortOrder
     password?: SortOrder
     favorites?: favoritesOrderByRelationAggregateInput
     orders?: ordersOrderByRelationAggregateInput
@@ -9973,7 +9973,7 @@ export namespace Prisma {
     NOT?: usersWhereInput | usersWhereInput[]
     first_name?: StringFilter<"users"> | string
     last_name?: StringFilter<"users"> | string
-    phone_number?: StringNullableFilter<"users"> | string | null
+    phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
@@ -9985,7 +9985,7 @@ export namespace Prisma {
     first_name?: SortOrder
     last_name?: SortOrder
     email?: SortOrder
-    phone_number?: SortOrderInput | SortOrder
+    phone_number?: SortOrder
     password?: SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
@@ -10002,7 +10002,7 @@ export namespace Prisma {
     first_name?: StringWithAggregatesFilter<"users"> | string
     last_name?: StringWithAggregatesFilter<"users"> | string
     email?: StringWithAggregatesFilter<"users"> | string
-    phone_number?: StringNullableWithAggregatesFilter<"users"> | string | null
+    phone_number?: StringWithAggregatesFilter<"users"> | string
     password?: StringWithAggregatesFilter<"users"> | string
   }
 
@@ -10322,7 +10322,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
@@ -10334,7 +10334,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
@@ -10345,7 +10345,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
@@ -10357,7 +10357,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
@@ -10369,7 +10369,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
   }
 
@@ -10377,7 +10377,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10386,7 +10386,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
   }
 
@@ -11707,7 +11707,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     orders?: ordersCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
@@ -11718,7 +11718,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -11776,7 +11776,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     orders?: ordersUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
@@ -11787,7 +11787,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -11929,7 +11929,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
@@ -11940,7 +11940,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -11982,7 +11982,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
@@ -11993,7 +11993,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -12003,7 +12003,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
@@ -12014,7 +12014,7 @@ export namespace Prisma {
     first_name: string
     last_name: string
     email: string
-    phone_number?: string | null
+    phone_number: string
     password: string
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
@@ -12040,7 +12040,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
@@ -12051,7 +12051,7 @@ export namespace Prisma {
     first_name?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    phone_number?: NullableStringFieldUpdateOperationsInput | string | null
+    phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
