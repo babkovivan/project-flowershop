@@ -3,10 +3,11 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma.service';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private JwtService: JwtService) {}
   async create(user: CreateUserDto): Promise<CreateUserDto> {
     const { first_name, last_name, email, phone_number, password } = user;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -19,8 +20,8 @@ export class UsersService {
         phone_number,
         password: hashedPassword
       },
-    });
-
+    })
+   const token = this.JwtService.sign({ email: email });
     return this._toUserDto(newUser);
   }catch (error: any) {
     console.error('Ошибка при создании пользователя:', error);
@@ -36,8 +37,17 @@ export class UsersService {
     return await this.prisma.users.findUnique({where: {email:email}})
   }
 
-update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+async update(id: number, updateUserDto: UpdateUserDto) {
+    try {
+      const updatedUser = await this.prisma.users.update({
+        where: { id }, // Предполагается, что у вас есть поле 'id' в вашей модели User
+        data: updateUserDto,
+      });
+      return this._toUserDto(updatedUser); // Преобразовать в DTO
+    } catch (error) {
+      console.error('Ошибка при обновлении пользователя:', error);
+      throw new Error('Не удалось обновить пользователя.');
+    }
   }
 
     remove(id: number) {
