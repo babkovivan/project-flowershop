@@ -40,10 +40,10 @@ export class UsersService {
 async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       const updatedUser = await this.prisma.users.update({
-        where: { id }, // Предполагается, что у вас есть поле 'id' в вашей модели User
+        where: { user_id: id },
         data: updateUserDto,
       });
-      return this._toUserDto(updatedUser); // Преобразовать в DTO
+      return this._toUserDto(updatedUser);
     } catch (error) {
       console.error('Ошибка при обновлении пользователя:', error);
       throw new Error('Не удалось обновить пользователя.');

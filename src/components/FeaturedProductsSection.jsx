@@ -3,7 +3,10 @@ import ProductCard from "./ProductCard";
 
 const FeaturedProductsSection = ({ products }) => {
   return (
-    <section className="mx-auto max-w-4xl bg-[#7A7A7A] pr-9 pl-9 pt-5 pb-3 mt-9 rounded-lg shadow-md">
+    <section 
+      className="mx-auto max-w-4xl bg-[#7A7A7A] pr-9 pl-9 pt-5 pb-3 mt-9 rounded-lg shadow-md"
+      aria-label="Featured Products"
+    >
     <div className="flex justify-between items-center mb-6">
       {/* Две карточки товаров */}
       <div className="flex gap-5">

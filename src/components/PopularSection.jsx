@@ -68,6 +68,7 @@ const PopularSection = () => {
             <div
               className="flex gap-4 transition-transform duration-300"
               style={{ transform: `translateX(-${offset}px)` }}
+              data-testid="products-container"
             >
               {products.map((product) => (
                 <div

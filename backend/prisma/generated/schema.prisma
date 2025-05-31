@@ -11,9 +11,9 @@ datasource db {
 model bouquets {
   bouquet_id  Int           @id @default(autoincrement())
   name        String
-  description String?
+  description String
   price       Int
-  image_url   String?
+  image_url   String
   created_at  DateTime
   category_id Int
   categories  categories    @relation(fields: [category_id], references: [categories_id])
@@ -51,8 +51,8 @@ model orders {
   order_id         Int           @id @default(autoincrement())
   user_id          Int
   order_date       DateTime      @default(now())
-  delivery_date    DateTime?
-  delivery_address String?
+  delivery_date    DateTime
+  delivery_address String
   total_amount     Decimal
   status           String
   order_items      order_items[]
@@ -62,7 +62,7 @@ model orders {
 model reviews {
   reviews_id  Int      @id @default(autoincrement())
   user_id     Int
-  comment     String?
+  comment     String
   rating      Int      @default(5)
   review_date DateTime @default(now())
   users       users    @relation(fields: [user_id], references: [user_id])
