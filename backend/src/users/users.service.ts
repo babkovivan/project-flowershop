@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma.service';
 import { JwtService } from '@nestjs/jwt';
+import { compare } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -37,13 +38,46 @@ export class UsersService {
     return await this.prisma.users.findUnique({where: {email:email}})
   }
 
+  async findByLogin({
+                          email,
+                          password,
+                      }: {
+        email: string;
+        password: string;
+    }): Promise<CreateUserDto> {
+        const user = await this.prisma.users.findUnique({where: {email}});
+
+        if (!user) {
+            throw new NotFoundException('User not found');
+        }
+
+        const areEqual = await compare(password, user.password);
+
+        if (!areEqual) {
+            throw new NotFoundException('Invalid login or password');
+        }
+
+        return this._toUserDto(user);
+    }
+
+        async updateSessionToken(userId: number, token: string): Promise<void> {
+        await this.prisma.users.update({
+            where: {
+                user_id: userId,
+            },
+            data: {
+                currentToken: token,
+            },
+        });
+    }
+
 async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       const updatedUser = await this.prisma.users.update({
-        where: { id }, // Предполагается, что у вас есть поле 'id' в вашей модели User
+        where: { user_id: id },
         data: updateUserDto,
       });
-      return this._toUserDto(updatedUser); // Преобразовать в DTO
+      return this._toUserDto(updatedUser);
     } catch (error) {
       console.error('Ошибка при обновлении пользователя:', error);
       throw new Error('Не удалось обновить пользователя.');
