@@ -5,7 +5,6 @@ const PopularSection = ({ products, favorites, toggleFavorite, addToCart }) => {
   return (
     <section className="mx-auto max-w-[1200px] px-4 sm:px-6 mb-8 sm:mb-16">
       <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden">
-        {/* Background SVG */}
         <svg 
           width="100%" 
           height="100%" 
@@ -20,7 +19,6 @@ const PopularSection = ({ products, favorites, toggleFavorite, addToCart }) => {
             fill="#BFC5D3"
           />
         </svg>
-
         <div className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
           <h2 className="text-3xl sm:text-4xl font-light mb-6 sm:mb-8">Популярные товары</h2>
           <ProductCarousel 
