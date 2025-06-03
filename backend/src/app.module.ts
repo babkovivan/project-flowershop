@@ -8,10 +8,22 @@ import { OrdersModule } from './orders/orders.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [BouquetsModule, CategoriesModule, FavoritesModule, OrderItemsModule, OrdersModule, ReviewsModule, UsersModule, AuthModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    BouquetsModule,
+    CategoriesModule,
+    FavoritesModule,
+    OrderItemsModule,
+    OrdersModule,
+    ReviewsModule,
+    UsersModule,
+    AuthModule
+  ],
   controllers: [],
   providers: [PrismaService],
 })
