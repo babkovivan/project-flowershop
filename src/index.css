@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Alumni Sans', sans-serif;
+  }
+
+  body {
+    @apply bg-[#F5F5F8];
+  }
+
+  /* Общие стили для всех секций */
+  section {
+    @apply w-full max-w-[1200px] mx-auto px-6 py-24;
+  }
+
+  /* Стили для заголовков */
+  h1 {
+    @apply text-6xl font-light;
+  }
+
+  h2 {
+    @apply text-4xl font-light;
+  }
+
+  h3 {
+    @apply text-2xl font-light;
+  }
+
+  /* Стили для основного текста */
+  p {
+    @apply text-lg font-light;
+  }
+
+  /* Стили для кнопок */
+  button {
+    @apply font-light;
+    font-family: 'Alumni Sans', sans-serif;
+  }
+
+  /* Стили для ссылок */
+  a {
+    @apply font-light;
+  }
+}
+
+/* Дополнительные утилиты */
+@layer utilities {
+  .section-container {
+    @apply w-full max-w-[1200px] mx-auto px-6 py-24;
+  }
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 

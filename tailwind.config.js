@@ -1,12 +1,15 @@
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        condensed: ['"Roboto Condensed"', 'sans-serif'],
+        sans: ['Alumni Sans', 'sans-serif'],
+      },
+      maxWidth: {
+        'section': '1200px',
       },
     },
   },
