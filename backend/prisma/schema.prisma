@@ -75,6 +75,7 @@ model users {
   email        String      @unique
   phone_number String
   password     String
+  session_token String?
   favorites    favorites[]
   orders       orders[]
   reviews      reviews[]
