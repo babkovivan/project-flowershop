@@ -301,8 +301,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.2
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -1753,9 +1753,9 @@ export namespace Prisma {
   export type BouquetsGroupByOutputType = {
     bouquet_id: number
     name: string
-    description: string
+    description: string | null
     price: number
-    image_url: string
+    image_url: string | null
     created_at: Date
     category_id: number
     _count: BouquetsCountAggregateOutputType | null
@@ -1849,9 +1849,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       bouquet_id: number
       name: string
-      description: string
+      description: string | null
       price: number
-      image_url: string
+      image_url: string | null
       created_at: Date
       category_id: number
     }, ExtArgs["result"]["bouquets"]>
@@ -6163,8 +6163,8 @@ export namespace Prisma {
     order_id: number
     user_id: number
     order_date: Date
-    delivery_date: Date
-    delivery_address: string
+    delivery_date: Date | null
+    delivery_address: string | null
     total_amount: Decimal
     status: string
     _count: OrdersCountAggregateOutputType | null
@@ -6256,8 +6256,8 @@ export namespace Prisma {
       order_id: number
       user_id: number
       order_date: Date
-      delivery_date: Date
-      delivery_address: string
+      delivery_date: Date | null
+      delivery_address: string | null
       total_amount: Prisma.Decimal
       status: string
     }, ExtArgs["result"]["orders"]>
@@ -7306,7 +7306,7 @@ export namespace Prisma {
   export type ReviewsGroupByOutputType = {
     reviews_id: number
     user_id: number
-    comment: string
+    comment: string | null
     rating: number
     review_date: Date
     _count: ReviewsCountAggregateOutputType | null
@@ -7384,7 +7384,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       reviews_id: number
       user_id: number
-      comment: string
+      comment: string | null
       rating: number
       review_date: Date
     }, ExtArgs["result"]["reviews"]>
@@ -8257,7 +8257,6 @@ export namespace Prisma {
     email: string | null
     phone_number: string | null
     password: string | null
-    currentToken: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -8267,7 +8266,6 @@ export namespace Prisma {
     email: string | null
     phone_number: string | null
     password: string | null
-    currentToken: string | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -8277,7 +8275,6 @@ export namespace Prisma {
     email: number
     phone_number: number
     password: number
-    currentToken: number
     _all: number
   }
 
@@ -8297,7 +8294,6 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
-    currentToken?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -8307,7 +8303,6 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
-    currentToken?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -8317,7 +8312,6 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
-    currentToken?: true
     _all?: true
   }
 
@@ -8414,7 +8408,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken: string | null
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -8443,7 +8436,6 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
-    currentToken?: boolean
     favorites?: boolean | users$favoritesArgs<ExtArgs>
     orders?: boolean | users$ordersArgs<ExtArgs>
     reviews?: boolean | users$reviewsArgs<ExtArgs>
@@ -8457,7 +8449,6 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
-    currentToken?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8467,7 +8458,6 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
-    currentToken?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -8477,10 +8467,9 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
-    currentToken?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "first_name" | "last_name" | "email" | "phone_number" | "password" | "currentToken", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "first_name" | "last_name" | "email" | "phone_number" | "password", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     favorites?: boolean | users$favoritesArgs<ExtArgs>
     orders?: boolean | users$ordersArgs<ExtArgs>
@@ -8504,7 +8493,6 @@ export namespace Prisma {
       email: string
       phone_number: string
       password: string
-      currentToken: string | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -8937,7 +8925,6 @@ export namespace Prisma {
     readonly email: FieldRef<"users", 'String'>
     readonly phone_number: FieldRef<"users", 'String'>
     readonly password: FieldRef<"users", 'String'>
-    readonly currentToken: FieldRef<"users", 'String'>
   }
     
 
@@ -9499,8 +9486,7 @@ export namespace Prisma {
     last_name: 'last_name',
     email: 'email',
     phone_number: 'phone_number',
-    password: 'password',
-    currentToken: 'currentToken'
+    password: 'password'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -9614,9 +9600,9 @@ export namespace Prisma {
     NOT?: bouquetsWhereInput | bouquetsWhereInput[]
     bouquet_id?: IntFilter<"bouquets"> | number
     name?: StringFilter<"bouquets"> | string
-    description?: StringFilter<"bouquets"> | string
+    description?: StringNullableFilter<"bouquets"> | string | null
     price?: IntFilter<"bouquets"> | number
-    image_url?: StringFilter<"bouquets"> | string
+    image_url?: StringNullableFilter<"bouquets"> | string | null
     created_at?: DateTimeFilter<"bouquets"> | Date | string
     category_id?: IntFilter<"bouquets"> | number
     categories?: XOR<CategoriesScalarRelationFilter, categoriesWhereInput>
@@ -9627,9 +9613,9 @@ export namespace Prisma {
   export type bouquetsOrderByWithRelationInput = {
     bouquet_id?: SortOrder
     name?: SortOrder
-    description?: SortOrder
+    description?: SortOrderInput | SortOrder
     price?: SortOrder
-    image_url?: SortOrder
+    image_url?: SortOrderInput | SortOrder
     created_at?: SortOrder
     category_id?: SortOrder
     categories?: categoriesOrderByWithRelationInput
@@ -9643,9 +9629,9 @@ export namespace Prisma {
     OR?: bouquetsWhereInput[]
     NOT?: bouquetsWhereInput | bouquetsWhereInput[]
     name?: StringFilter<"bouquets"> | string
-    description?: StringFilter<"bouquets"> | string
+    description?: StringNullableFilter<"bouquets"> | string | null
     price?: IntFilter<"bouquets"> | number
-    image_url?: StringFilter<"bouquets"> | string
+    image_url?: StringNullableFilter<"bouquets"> | string | null
     created_at?: DateTimeFilter<"bouquets"> | Date | string
     category_id?: IntFilter<"bouquets"> | number
     categories?: XOR<CategoriesScalarRelationFilter, categoriesWhereInput>
@@ -9656,9 +9642,9 @@ export namespace Prisma {
   export type bouquetsOrderByWithAggregationInput = {
     bouquet_id?: SortOrder
     name?: SortOrder
-    description?: SortOrder
+    description?: SortOrderInput | SortOrder
     price?: SortOrder
-    image_url?: SortOrder
+    image_url?: SortOrderInput | SortOrder
     created_at?: SortOrder
     category_id?: SortOrder
     _count?: bouquetsCountOrderByAggregateInput
@@ -9674,9 +9660,9 @@ export namespace Prisma {
     NOT?: bouquetsScalarWhereWithAggregatesInput | bouquetsScalarWhereWithAggregatesInput[]
     bouquet_id?: IntWithAggregatesFilter<"bouquets"> | number
     name?: StringWithAggregatesFilter<"bouquets"> | string
-    description?: StringWithAggregatesFilter<"bouquets"> | string
+    description?: StringNullableWithAggregatesFilter<"bouquets"> | string | null
     price?: IntWithAggregatesFilter<"bouquets"> | number
-    image_url?: StringWithAggregatesFilter<"bouquets"> | string
+    image_url?: StringNullableWithAggregatesFilter<"bouquets"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"bouquets"> | Date | string
     category_id?: IntWithAggregatesFilter<"bouquets"> | number
   }
@@ -9832,8 +9818,8 @@ export namespace Prisma {
     order_id?: IntFilter<"orders"> | number
     user_id?: IntFilter<"orders"> | number
     order_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_address?: StringFilter<"orders"> | string
+    delivery_date?: DateTimeNullableFilter<"orders"> | Date | string | null
+    delivery_address?: StringNullableFilter<"orders"> | string | null
     total_amount?: DecimalFilter<"orders"> | Decimal | DecimalJsLike | number | string
     status?: StringFilter<"orders"> | string
     order_items?: Order_itemsListRelationFilter
@@ -9844,8 +9830,8 @@ export namespace Prisma {
     order_id?: SortOrder
     user_id?: SortOrder
     order_date?: SortOrder
-    delivery_date?: SortOrder
-    delivery_address?: SortOrder
+    delivery_date?: SortOrderInput | SortOrder
+    delivery_address?: SortOrderInput | SortOrder
     total_amount?: SortOrder
     status?: SortOrder
     order_items?: order_itemsOrderByRelationAggregateInput
@@ -9859,8 +9845,8 @@ export namespace Prisma {
     NOT?: ordersWhereInput | ordersWhereInput[]
     user_id?: IntFilter<"orders"> | number
     order_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_address?: StringFilter<"orders"> | string
+    delivery_date?: DateTimeNullableFilter<"orders"> | Date | string | null
+    delivery_address?: StringNullableFilter<"orders"> | string | null
     total_amount?: DecimalFilter<"orders"> | Decimal | DecimalJsLike | number | string
     status?: StringFilter<"orders"> | string
     order_items?: Order_itemsListRelationFilter
@@ -9871,8 +9857,8 @@ export namespace Prisma {
     order_id?: SortOrder
     user_id?: SortOrder
     order_date?: SortOrder
-    delivery_date?: SortOrder
-    delivery_address?: SortOrder
+    delivery_date?: SortOrderInput | SortOrder
+    delivery_address?: SortOrderInput | SortOrder
     total_amount?: SortOrder
     status?: SortOrder
     _count?: ordersCountOrderByAggregateInput
@@ -9889,8 +9875,8 @@ export namespace Prisma {
     order_id?: IntWithAggregatesFilter<"orders"> | number
     user_id?: IntWithAggregatesFilter<"orders"> | number
     order_date?: DateTimeWithAggregatesFilter<"orders"> | Date | string
-    delivery_date?: DateTimeWithAggregatesFilter<"orders"> | Date | string
-    delivery_address?: StringWithAggregatesFilter<"orders"> | string
+    delivery_date?: DateTimeNullableWithAggregatesFilter<"orders"> | Date | string | null
+    delivery_address?: StringNullableWithAggregatesFilter<"orders"> | string | null
     total_amount?: DecimalWithAggregatesFilter<"orders"> | Decimal | DecimalJsLike | number | string
     status?: StringWithAggregatesFilter<"orders"> | string
   }
@@ -9901,7 +9887,7 @@ export namespace Prisma {
     NOT?: reviewsWhereInput | reviewsWhereInput[]
     reviews_id?: IntFilter<"reviews"> | number
     user_id?: IntFilter<"reviews"> | number
-    comment?: StringFilter<"reviews"> | string
+    comment?: StringNullableFilter<"reviews"> | string | null
     rating?: IntFilter<"reviews"> | number
     review_date?: DateTimeFilter<"reviews"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -9910,7 +9896,7 @@ export namespace Prisma {
   export type reviewsOrderByWithRelationInput = {
     reviews_id?: SortOrder
     user_id?: SortOrder
-    comment?: SortOrder
+    comment?: SortOrderInput | SortOrder
     rating?: SortOrder
     review_date?: SortOrder
     users?: usersOrderByWithRelationInput
@@ -9922,7 +9908,7 @@ export namespace Prisma {
     OR?: reviewsWhereInput[]
     NOT?: reviewsWhereInput | reviewsWhereInput[]
     user_id?: IntFilter<"reviews"> | number
-    comment?: StringFilter<"reviews"> | string
+    comment?: StringNullableFilter<"reviews"> | string | null
     rating?: IntFilter<"reviews"> | number
     review_date?: DateTimeFilter<"reviews"> | Date | string
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -9931,7 +9917,7 @@ export namespace Prisma {
   export type reviewsOrderByWithAggregationInput = {
     reviews_id?: SortOrder
     user_id?: SortOrder
-    comment?: SortOrder
+    comment?: SortOrderInput | SortOrder
     rating?: SortOrder
     review_date?: SortOrder
     _count?: reviewsCountOrderByAggregateInput
@@ -9947,7 +9933,7 @@ export namespace Prisma {
     NOT?: reviewsScalarWhereWithAggregatesInput | reviewsScalarWhereWithAggregatesInput[]
     reviews_id?: IntWithAggregatesFilter<"reviews"> | number
     user_id?: IntWithAggregatesFilter<"reviews"> | number
-    comment?: StringWithAggregatesFilter<"reviews"> | string
+    comment?: StringNullableWithAggregatesFilter<"reviews"> | string | null
     rating?: IntWithAggregatesFilter<"reviews"> | number
     review_date?: DateTimeWithAggregatesFilter<"reviews"> | Date | string
   }
@@ -9962,7 +9948,6 @@ export namespace Prisma {
     email?: StringFilter<"users"> | string
     phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
-    currentToken?: StringNullableFilter<"users"> | string | null
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
     reviews?: ReviewsListRelationFilter
@@ -9975,7 +9960,6 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
-    currentToken?: SortOrderInput | SortOrder
     favorites?: favoritesOrderByRelationAggregateInput
     orders?: ordersOrderByRelationAggregateInput
     reviews?: reviewsOrderByRelationAggregateInput
@@ -9991,7 +9975,6 @@ export namespace Prisma {
     last_name?: StringFilter<"users"> | string
     phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
-    currentToken?: StringNullableFilter<"users"> | string | null
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
     reviews?: ReviewsListRelationFilter
@@ -10004,7 +9987,6 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
-    currentToken?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -10022,14 +10004,13 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"users"> | string
     phone_number?: StringWithAggregatesFilter<"users"> | string
     password?: StringWithAggregatesFilter<"users"> | string
-    currentToken?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
   export type bouquetsCreateInput = {
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     categories: categoriesCreateNestedOneWithoutBouquetsInput
     favorites?: favoritesCreateNestedManyWithoutBouquetsInput
@@ -10039,9 +10020,9 @@ export namespace Prisma {
   export type bouquetsUncheckedCreateInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     category_id: number
     favorites?: favoritesUncheckedCreateNestedManyWithoutBouquetsInput
@@ -10050,9 +10031,9 @@ export namespace Prisma {
 
   export type bouquetsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: categoriesUpdateOneRequiredWithoutBouquetsNestedInput
     favorites?: favoritesUpdateManyWithoutBouquetsNestedInput
@@ -10062,9 +10043,9 @@ export namespace Prisma {
   export type bouquetsUncheckedUpdateInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: IntFieldUpdateOperationsInput | number
     favorites?: favoritesUncheckedUpdateManyWithoutBouquetsNestedInput
@@ -10074,27 +10055,27 @@ export namespace Prisma {
   export type bouquetsCreateManyInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     category_id: number
   }
 
   export type bouquetsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type bouquetsUncheckedUpdateManyInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: IntFieldUpdateOperationsInput | number
   }
@@ -10217,8 +10198,8 @@ export namespace Prisma {
 
   export type ordersCreateInput = {
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
     order_items?: order_itemsCreateNestedManyWithoutOrdersInput
@@ -10229,8 +10210,8 @@ export namespace Prisma {
     order_id?: number
     user_id: number
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
     order_items?: order_itemsUncheckedCreateNestedManyWithoutOrdersInput
@@ -10238,8 +10219,8 @@ export namespace Prisma {
 
   export type ordersUpdateInput = {
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
     order_items?: order_itemsUpdateManyWithoutOrdersNestedInput
@@ -10250,8 +10231,8 @@ export namespace Prisma {
     order_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
     order_items?: order_itemsUncheckedUpdateManyWithoutOrdersNestedInput
@@ -10261,16 +10242,16 @@ export namespace Prisma {
     order_id?: number
     user_id: number
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
   }
 
   export type ordersUpdateManyMutationInput = {
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
   }
@@ -10279,14 +10260,14 @@ export namespace Prisma {
     order_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
   }
 
   export type reviewsCreateInput = {
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
     users: usersCreateNestedOneWithoutReviewsInput
@@ -10295,13 +10276,13 @@ export namespace Prisma {
   export type reviewsUncheckedCreateInput = {
     reviews_id?: number
     user_id: number
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
   }
 
   export type reviewsUpdateInput = {
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: usersUpdateOneRequiredWithoutReviewsNestedInput
@@ -10310,7 +10291,7 @@ export namespace Prisma {
   export type reviewsUncheckedUpdateInput = {
     reviews_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10318,13 +10299,13 @@ export namespace Prisma {
   export type reviewsCreateManyInput = {
     reviews_id?: number
     user_id: number
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
   }
 
   export type reviewsUpdateManyMutationInput = {
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10332,7 +10313,7 @@ export namespace Prisma {
   export type reviewsUncheckedUpdateManyInput = {
     reviews_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10343,7 +10324,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
@@ -10356,7 +10336,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -10368,7 +10347,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
@@ -10381,7 +10359,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -10394,7 +10371,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
   }
 
   export type usersUpdateManyMutationInput = {
@@ -10403,7 +10379,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -10413,7 +10388,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -10442,6 +10416,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -10468,6 +10457,11 @@ export namespace Prisma {
     every?: order_itemsWhereInput
     some?: order_itemsWhereInput
     none?: order_itemsWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type favoritesOrderByRelationAggregateInput = {
@@ -10552,6 +10546,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10684,6 +10696,17 @@ export namespace Prisma {
     quantity?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -10735,6 +10758,20 @@ export namespace Prisma {
     order_id?: SortOrder
     user_id?: SortOrder
     total_amount?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -10789,21 +10826,6 @@ export namespace Prisma {
     rating?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type OrdersListRelationFilter = {
     every?: ordersWhereInput
     some?: ordersWhereInput
@@ -10814,11 +10836,6 @@ export namespace Prisma {
     every?: reviewsWhereInput
     some?: reviewsWhereInput
     none?: reviewsWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type ordersOrderByRelationAggregateInput = {
@@ -10836,7 +10853,6 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
-    currentToken?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -10850,7 +10866,6 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
-    currentToken?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -10860,29 +10875,10 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
-    currentToken?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
     user_id?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type categoriesCreateNestedOneWithoutBouquetsInput = {
@@ -10921,6 +10917,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -11117,6 +11117,10 @@ export namespace Prisma {
     connect?: order_itemsWhereUniqueInput | order_itemsWhereUniqueInput[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -11215,10 +11219,6 @@ export namespace Prisma {
     connectOrCreate?: reviewsCreateOrConnectWithoutUsersInput | reviewsCreateOrConnectWithoutUsersInput[]
     createMany?: reviewsCreateManyUsersInputEnvelope
     connect?: reviewsWhereUniqueInput | reviewsWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type favoritesUpdateManyWithoutUsersNestedInput = {
@@ -11330,6 +11330,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11385,61 +11399,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
-
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11466,6 +11425,72 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type categoriesCreateWithoutBouquetsInput = {
@@ -11594,9 +11619,9 @@ export namespace Prisma {
 
   export type bouquetsCreateWithoutCategoriesInput = {
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     favorites?: favoritesCreateNestedManyWithoutBouquetsInput
     order_items?: order_itemsCreateNestedManyWithoutBouquetsInput
@@ -11605,9 +11630,9 @@ export namespace Prisma {
   export type bouquetsUncheckedCreateWithoutCategoriesInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     favorites?: favoritesUncheckedCreateNestedManyWithoutBouquetsInput
     order_items?: order_itemsUncheckedCreateNestedManyWithoutBouquetsInput
@@ -11645,18 +11670,18 @@ export namespace Prisma {
     NOT?: bouquetsScalarWhereInput | bouquetsScalarWhereInput[]
     bouquet_id?: IntFilter<"bouquets"> | number
     name?: StringFilter<"bouquets"> | string
-    description?: StringFilter<"bouquets"> | string
+    description?: StringNullableFilter<"bouquets"> | string | null
     price?: IntFilter<"bouquets"> | number
-    image_url?: StringFilter<"bouquets"> | string
+    image_url?: StringNullableFilter<"bouquets"> | string | null
     created_at?: DateTimeFilter<"bouquets"> | Date | string
     category_id?: IntFilter<"bouquets"> | number
   }
 
   export type bouquetsCreateWithoutFavoritesInput = {
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     categories: categoriesCreateNestedOneWithoutBouquetsInput
     order_items?: order_itemsCreateNestedManyWithoutBouquetsInput
@@ -11665,9 +11690,9 @@ export namespace Prisma {
   export type bouquetsUncheckedCreateWithoutFavoritesInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     category_id: number
     order_items?: order_itemsUncheckedCreateNestedManyWithoutBouquetsInput
@@ -11684,7 +11709,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     orders?: ordersCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
   }
@@ -11696,7 +11720,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -11719,9 +11742,9 @@ export namespace Prisma {
 
   export type bouquetsUpdateWithoutFavoritesInput = {
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: categoriesUpdateOneRequiredWithoutBouquetsNestedInput
     order_items?: order_itemsUpdateManyWithoutBouquetsNestedInput
@@ -11730,9 +11753,9 @@ export namespace Prisma {
   export type bouquetsUncheckedUpdateWithoutFavoritesInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: IntFieldUpdateOperationsInput | number
     order_items?: order_itemsUncheckedUpdateManyWithoutBouquetsNestedInput
@@ -11755,7 +11778,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: ordersUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
   }
@@ -11767,16 +11789,15 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type bouquetsCreateWithoutOrder_itemsInput = {
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     categories: categoriesCreateNestedOneWithoutBouquetsInput
     favorites?: favoritesCreateNestedManyWithoutBouquetsInput
@@ -11785,9 +11806,9 @@ export namespace Prisma {
   export type bouquetsUncheckedCreateWithoutOrder_itemsInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
     category_id: number
     favorites?: favoritesUncheckedCreateNestedManyWithoutBouquetsInput
@@ -11800,8 +11821,8 @@ export namespace Prisma {
 
   export type ordersCreateWithoutOrder_itemsInput = {
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
     users: usersCreateNestedOneWithoutOrdersInput
@@ -11811,8 +11832,8 @@ export namespace Prisma {
     order_id?: number
     user_id: number
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
   }
@@ -11835,9 +11856,9 @@ export namespace Prisma {
 
   export type bouquetsUpdateWithoutOrder_itemsInput = {
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categories?: categoriesUpdateOneRequiredWithoutBouquetsNestedInput
     favorites?: favoritesUpdateManyWithoutBouquetsNestedInput
@@ -11846,9 +11867,9 @@ export namespace Prisma {
   export type bouquetsUncheckedUpdateWithoutOrder_itemsInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category_id?: IntFieldUpdateOperationsInput | number
     favorites?: favoritesUncheckedUpdateManyWithoutBouquetsNestedInput
@@ -11867,8 +11888,8 @@ export namespace Prisma {
 
   export type ordersUpdateWithoutOrder_itemsInput = {
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
     users?: usersUpdateOneRequiredWithoutOrdersNestedInput
@@ -11878,8 +11899,8 @@ export namespace Prisma {
     order_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
   }
@@ -11910,7 +11931,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
   }
@@ -11922,7 +11942,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -11965,7 +11984,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
   }
@@ -11977,7 +11995,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -11988,7 +12005,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
   }
@@ -12000,7 +12016,6 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
-    currentToken?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -12027,7 +12042,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
   }
@@ -12039,7 +12053,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
-    currentToken?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -12066,8 +12079,8 @@ export namespace Prisma {
 
   export type ordersCreateWithoutUsersInput = {
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
     order_items?: order_itemsCreateNestedManyWithoutOrdersInput
@@ -12076,8 +12089,8 @@ export namespace Prisma {
   export type ordersUncheckedCreateWithoutUsersInput = {
     order_id?: number
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
     order_items?: order_itemsUncheckedCreateNestedManyWithoutOrdersInput
@@ -12094,14 +12107,14 @@ export namespace Prisma {
   }
 
   export type reviewsCreateWithoutUsersInput = {
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
   }
 
   export type reviewsUncheckedCreateWithoutUsersInput = {
     reviews_id?: number
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
   }
@@ -12155,8 +12168,8 @@ export namespace Prisma {
     order_id?: IntFilter<"orders"> | number
     user_id?: IntFilter<"orders"> | number
     order_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_date?: DateTimeFilter<"orders"> | Date | string
-    delivery_address?: StringFilter<"orders"> | string
+    delivery_date?: DateTimeNullableFilter<"orders"> | Date | string | null
+    delivery_address?: StringNullableFilter<"orders"> | string | null
     total_amount?: DecimalFilter<"orders"> | Decimal | DecimalJsLike | number | string
     status?: StringFilter<"orders"> | string
   }
@@ -12183,7 +12196,7 @@ export namespace Prisma {
     NOT?: reviewsScalarWhereInput | reviewsScalarWhereInput[]
     reviews_id?: IntFilter<"reviews"> | number
     user_id?: IntFilter<"reviews"> | number
-    comment?: StringFilter<"reviews"> | string
+    comment?: StringNullableFilter<"reviews"> | string | null
     rating?: IntFilter<"reviews"> | number
     review_date?: DateTimeFilter<"reviews"> | Date | string
   }
@@ -12231,17 +12244,17 @@ export namespace Prisma {
   export type bouquetsCreateManyCategoriesInput = {
     bouquet_id?: number
     name: string
-    description: string
+    description?: string | null
     price: number
-    image_url: string
+    image_url?: string | null
     created_at: Date | string
   }
 
   export type bouquetsUpdateWithoutCategoriesInput = {
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     favorites?: favoritesUpdateManyWithoutBouquetsNestedInput
     order_items?: order_itemsUpdateManyWithoutBouquetsNestedInput
@@ -12250,9 +12263,9 @@ export namespace Prisma {
   export type bouquetsUncheckedUpdateWithoutCategoriesInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     favorites?: favoritesUncheckedUpdateManyWithoutBouquetsNestedInput
     order_items?: order_itemsUncheckedUpdateManyWithoutBouquetsNestedInput
@@ -12261,9 +12274,9 @@ export namespace Prisma {
   export type bouquetsUncheckedUpdateManyWithoutCategoriesInput = {
     bouquet_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     price?: IntFieldUpdateOperationsInput | number
-    image_url?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12295,15 +12308,15 @@ export namespace Prisma {
   export type ordersCreateManyUsersInput = {
     order_id?: number
     order_date?: Date | string
-    delivery_date: Date | string
-    delivery_address: string
+    delivery_date?: Date | string | null
+    delivery_address?: string | null
     total_amount: Decimal | DecimalJsLike | number | string
     status: string
   }
 
   export type reviewsCreateManyUsersInput = {
     reviews_id?: number
-    comment: string
+    comment?: string | null
     rating?: number
     review_date?: Date | string
   }
@@ -12325,8 +12338,8 @@ export namespace Prisma {
 
   export type ordersUpdateWithoutUsersInput = {
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
     order_items?: order_itemsUpdateManyWithoutOrdersNestedInput
@@ -12335,8 +12348,8 @@ export namespace Prisma {
   export type ordersUncheckedUpdateWithoutUsersInput = {
     order_id?: IntFieldUpdateOperationsInput | number
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
     order_items?: order_itemsUncheckedUpdateManyWithoutOrdersNestedInput
@@ -12345,28 +12358,28 @@ export namespace Prisma {
   export type ordersUncheckedUpdateManyWithoutUsersInput = {
     order_id?: IntFieldUpdateOperationsInput | number
     order_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery_address?: StringFieldUpdateOperationsInput | string
+    delivery_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    delivery_address?: NullableStringFieldUpdateOperationsInput | string | null
     total_amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     status?: StringFieldUpdateOperationsInput | string
   }
 
   export type reviewsUpdateWithoutUsersInput = {
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type reviewsUncheckedUpdateWithoutUsersInput = {
     reviews_id?: IntFieldUpdateOperationsInput | number
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type reviewsUncheckedUpdateManyWithoutUsersInput = {
     reviews_id?: IntFieldUpdateOperationsInput | number
-    comment?: StringFieldUpdateOperationsInput | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
     rating?: IntFieldUpdateOperationsInput | number
     review_date?: DateTimeFieldUpdateOperationsInput | Date | string
   }

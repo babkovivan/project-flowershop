@@ -69,14 +69,13 @@ model reviews {
 }
 
 model users {
-  user_id       Int         @id @default(autoincrement())
-  first_name    String
-  last_name     String
-  email         String      @unique
-  phone_number  String
-  password      String
-  currentToken  String?
-  favorites     favorites[]
-  orders        orders[]
-  reviews       reviews[]
+  user_id      Int         @id @default(autoincrement())
+  first_name   String
+  last_name    String
+  email        String      @unique
+  phone_number String
+  password     String
+  favorites    favorites[]
+  orders       orders[]
+  reviews      reviews[]
 }
