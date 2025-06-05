@@ -1,62 +1,92 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProductCard from "../components/ProductCard";
 
-const FavoritesPage = ({ favorites, toggleFavorite }) => {
-  const products = [
-    {
-      id: 1,
-      title: "Сердце весны",
-      description: "Воплощение свежести и радости весенних дней",
-      price: "3000₽",
-      image: "/images/popular1.jpg",
-    },
-    {
-      id: 2,
-      title: "Нежность облаков",
-      description: "Воздушный букет – словно кусочек неба в подарок",
-      price: "3500₽",
-      image: "/images/popular2.jpg",
-    },
-    {
-      id: 3,
-      title: "Мелодия счастья",
-      description: "Яркий и жизнерадостный аккорд для любого повода",
-      price: "2500₽",
-      image: "/images/popular3.jpg",
-    },
-    {
-      id: 4,
-      title: "Сказка любви",
-      description: "Элегантный букет для выражения чувств",
-      price: "2000₽",
-      image: "/images/popular4.jpg",
-    },
-  ];
+const FavoritesPage = ({ favorites, toggleFavorite, products, addToCart }) => {
+  const navigate = useNavigate();
+  const [quantities, setQuantities] = useState({});
 
-  const favoriteProducts = products.filter((product) =>
-    favorites.includes(product.id)
-  );
+  const favoriteProducts = products.filter(product => favorites.includes(product.id));
+
+  const handleQuantityChange = (productId, change) => {
+    setQuantities(prev => ({
+      ...prev,
+      [productId]: Math.max(1, (prev[productId] || 1) + change)
+    }));
+  };
+
+  const getQuantity = (productId) => quantities[productId] || 1;
 
   return (
-    <section className="bg-[#c6cbd8] py-12 px-4 min-h-[70vh]">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-condensed tracking-wide mb-8">Избранное</h2>
-        {favoriteProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {favoriteProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                isFavorite={favorites.includes(product.id)}
-                toggleFavorite={toggleFavorite}
-              />
-            ))}
-          </div>
-        ) : (
-          <p>Вы ещё ничего не добавили в избранное.</p>
-        )}
-      </div>
-    </section>
+    <div className="mx-auto max-w-6xl px-6 mb-16">
+      <h1 className="text-4xl font-light mb-8">Избранное</h1>
+      
+      {favoriteProducts.length === 0 ? (
+        <div className="text-center py-16">
+          <p className="text-xl text-gray-600 mb-6">В избранном пока пусто</p>
+          <button
+            onClick={() => navigate('/')}
+            className="bg-white border border-[#E8E9ED] px-8 py-3 rounded-lg hover:bg-[#E8E9ED] transition-colors"
+          >
+            Вернуться к покупкам
+          </button>
+        </div>
+      ) : (
+        <div className="space-y-6">
+          {favoriteProducts.map((product) => (
+            <div key={product.id} className="bg-white rounded-3xl overflow-hidden shadow-md">
+              <div className="flex items-center gap-8 p-6">
+                <div className="w-48 h-48 flex-shrink-0">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+
+                <div className="flex-grow">
+                  <h3 className="text-2xl font-light mb-2">{product.title}</h3>
+                  <p className="text-gray-600 mb-4">{product.description}</p>
+                  <div className="text-xl mb-4">{product.price}</div>
+
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 bg-[#F8F8F8] rounded-lg px-4 py-2">
+                      <button
+                        onClick={() => handleQuantityChange(product.id, -1)}
+                        className="text-gray-500 hover:text-black transition-colors w-6 h-6 flex items-center justify-center"
+                      >
+                        -
+                      </button>
+                      <span className="w-8 text-center">{getQuantity(product.id)}</span>
+                      <button
+                        onClick={() => handleQuantityChange(product.id, 1)}
+                        className="text-gray-500 hover:text-black transition-colors w-6 h-6 flex items-center justify-center"
+                      >
+                        +
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => addToCart(product.id, getQuantity(product.id))}
+                      className="bg-white border-2 border-[#BFC5D3] hover:border-[#A5ABC3] px-6 py-2 rounded-xl transition-all duration-300"
+                    >
+                      Добавить в корзину
+                    </button>
+
+                    <button
+                      onClick={() => toggleFavorite(product.id)}
+                      className="text-gray-500 hover:text-red-500 transition-colors"
+                    >
+                      ❤️
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
