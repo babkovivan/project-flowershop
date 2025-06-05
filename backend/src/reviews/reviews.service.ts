@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -29,16 +29,57 @@ export class ReviewsService {
     return this.prisma.reviews.findMany();;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} review`;
+  async findOne(id: number) {
+    const review = await this.prisma.reviews.findUnique({
+      where: { reviews_id: id },
+    });
+
+    if (!review) {
+      throw new NotFoundException(`Отзыв с ID ${id} не найден`);
+    }
+
+    return review;
   }
 
-  update(id: number, updateReviewDto: UpdateReviewDto) {
-    return `This action updates a #${id} review`;
+  async update(id: number, updateReviewDto: UpdateReviewDto) {
+    try {
+      const review = await this.prisma.reviews.update({
+        where: { reviews_id: id },
+        data: updateReviewDto,
+      });
+
+      if (!review) {
+        throw new NotFoundException(`Отзыв с ID ${id} не найден`);
+      }
+
+      return this._toReviewDto(review);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      console.error('Ошибка при обновлении отзыва:', error);
+      throw new Error('Не удалось обновить отзыв.');
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} review`;
+  async remove(id: number) {
+    try {
+      const review = await this.prisma.reviews.delete({
+        where: { reviews_id: id },
+      });
+
+      if (!review) {
+        throw new NotFoundException(`Отзыв с ID ${id} не найден`);
+      }
+
+      return { message: 'Отзыв успешно удален' };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      console.error('Ошибка при удалении отзыва:', error);
+      throw new Error('Не удалось удалить отзыв.');
+    }
   }
     private _toReviewDto(review): CreateReviewDto {
       const { user_id, comment, review_date, rating } = review;

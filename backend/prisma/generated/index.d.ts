@@ -300,8 +300,9 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.22.0
-   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+   * Prisma Client JS version: 6.8.2
+   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+
    */
   export type PrismaVersion = {
     client: string
@@ -7441,6 +7442,7 @@ export namespace Prisma {
     email: string | null
     phone_number: string | null
     password: string | null
+    session_token: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -7450,6 +7452,7 @@ export namespace Prisma {
     email: string | null
     phone_number: string | null
     password: string | null
+    session_token: string | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -7459,6 +7462,7 @@ export namespace Prisma {
     email: number
     phone_number: number
     password: number
+    session_token: number
     _all: number
   }
 
@@ -7478,6 +7482,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
+    session_token?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -7487,6 +7492,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
+    session_token?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -7496,6 +7502,7 @@ export namespace Prisma {
     email?: true
     phone_number?: true
     password?: true
+    session_token?: true
     _all?: true
   }
 
@@ -7592,6 +7599,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token: string | null
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -7620,6 +7628,7 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
+    session_token?: boolean
     favorites?: boolean | users$favoritesArgs<ExtArgs>
     orders?: boolean | users$ordersArgs<ExtArgs>
     reviews?: boolean | users$reviewsArgs<ExtArgs>
@@ -7633,7 +7642,20 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
+    session_token?: boolean
   }, ExtArgs["result"]["users"]>
+
+
+  export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    user_id?: boolean
+    first_name?: boolean
+    last_name?: boolean
+    email?: boolean
+    phone_number?: boolean
+    password?: boolean
+    session_token?: boolean
+  }, ExtArgs["result"]["users"]>
+
 
   export type usersSelectScalar = {
     user_id?: boolean
@@ -7642,7 +7664,11 @@ export namespace Prisma {
     email?: boolean
     phone_number?: boolean
     password?: boolean
+    session_token?: boolean
   }
+
+
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "first_name" | "last_name" | "email" | "phone_number" | "password" | "session_token", ExtArgs["result"]["users"]>
 
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     favorites?: boolean | users$favoritesArgs<ExtArgs>
@@ -7666,6 +7692,7 @@ export namespace Prisma {
       email: string
       phone_number: string
       password: string
+      session_token: string | null
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -8068,6 +8095,7 @@ export namespace Prisma {
     readonly email: FieldRef<"users", 'String'>
     readonly phone_number: FieldRef<"users", 'String'>
     readonly password: FieldRef<"users", 'String'>
+    readonly session_token: FieldRef<"users", 'String'>
   }
     
 
@@ -8539,7 +8567,8 @@ export namespace Prisma {
     last_name: 'last_name',
     email: 'email',
     phone_number: 'phone_number',
-    password: 'password'
+    password: 'password',
+    session_token: 'session_token'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -8993,6 +9022,7 @@ export namespace Prisma {
     email?: StringFilter<"users"> | string
     phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
+    session_token?: StringNullableFilter<"users"> | string | null
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
     reviews?: ReviewsListRelationFilter
@@ -9005,6 +9035,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
+    session_token?: SortOrderInput | SortOrder
     favorites?: favoritesOrderByRelationAggregateInput
     orders?: ordersOrderByRelationAggregateInput
     reviews?: reviewsOrderByRelationAggregateInput
@@ -9020,6 +9051,7 @@ export namespace Prisma {
     last_name?: StringFilter<"users"> | string
     phone_number?: StringFilter<"users"> | string
     password?: StringFilter<"users"> | string
+    session_token?: StringNullableFilter<"users"> | string | null
     favorites?: FavoritesListRelationFilter
     orders?: OrdersListRelationFilter
     reviews?: ReviewsListRelationFilter
@@ -9032,6 +9064,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
+    session_token?: SortOrderInput | SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -9049,6 +9082,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"users"> | string
     phone_number?: StringWithAggregatesFilter<"users"> | string
     password?: StringWithAggregatesFilter<"users"> | string
+    session_token?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
   export type bouquetsCreateInput = {
@@ -9369,6 +9403,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
@@ -9381,6 +9416,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -9392,6 +9428,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
@@ -9404,6 +9441,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -9416,6 +9454,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
   }
 
   export type usersUpdateManyMutationInput = {
@@ -9424,6 +9463,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -9433,6 +9473,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -9808,6 +9849,21 @@ export namespace Prisma {
     rating?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type OrdersListRelationFilter = {
     every?: ordersWhereInput
     some?: ordersWhereInput
@@ -9818,6 +9874,11 @@ export namespace Prisma {
     every?: reviewsWhereInput
     some?: reviewsWhereInput
     none?: reviewsWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type ordersOrderByRelationAggregateInput = {
@@ -9835,6 +9896,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
+    session_token?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -9848,6 +9910,7 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
+    session_token?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -9857,10 +9920,29 @@ export namespace Prisma {
     email?: SortOrder
     phone_number?: SortOrder
     password?: SortOrder
+    session_token?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
     user_id?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type categoriesCreateNestedOneWithoutBouquetsInput = {
@@ -10195,6 +10277,10 @@ export namespace Prisma {
     connect?: reviewsWhereUniqueInput | reviewsWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type favoritesUpdateManyWithoutUsersNestedInput = {
     create?: XOR<favoritesCreateWithoutUsersInput, favoritesUncheckedCreateWithoutUsersInput> | favoritesCreateWithoutUsersInput[] | favoritesUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: favoritesCreateOrConnectWithoutUsersInput | favoritesCreateOrConnectWithoutUsersInput[]
@@ -10398,6 +10484,48 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type categoriesCreateWithoutBouquetsInput = {
@@ -10616,6 +10744,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     orders?: ordersCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
   }
@@ -10627,6 +10756,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -10685,6 +10815,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: ordersUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
   }
@@ -10696,6 +10827,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -10838,6 +10970,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     reviews?: reviewsCreateNestedManyWithoutUsersInput
   }
@@ -10849,6 +10982,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     reviews?: reviewsUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -10891,6 +11025,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUpdateManyWithoutUsersNestedInput
   }
@@ -10902,6 +11037,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     reviews?: reviewsUncheckedUpdateManyWithoutUsersNestedInput
   }
@@ -10912,6 +11048,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesCreateNestedManyWithoutUsersInput
     orders?: ordersCreateNestedManyWithoutUsersInput
   }
@@ -10923,6 +11060,7 @@ export namespace Prisma {
     email: string
     phone_number: string
     password: string
+    session_token?: string | null
     favorites?: favoritesUncheckedCreateNestedManyWithoutUsersInput
     orders?: ordersUncheckedCreateNestedManyWithoutUsersInput
   }
@@ -10949,6 +11087,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUpdateManyWithoutUsersNestedInput
     orders?: ordersUpdateManyWithoutUsersNestedInput
   }
@@ -10960,6 +11099,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
+    session_token?: NullableStringFieldUpdateOperationsInput | string | null
     favorites?: favoritesUncheckedUpdateManyWithoutUsersNestedInput
     orders?: ordersUncheckedUpdateManyWithoutUsersNestedInput
   }

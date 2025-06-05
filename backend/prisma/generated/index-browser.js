@@ -17,12 +17,13 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.22.0
- * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
+ * Prisma Client JS version: 6.8.2
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "5.22.0",
-  engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
+  client: "6.8.2",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
+
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -173,7 +174,8 @@ exports.Prisma.UsersScalarFieldEnum = {
   last_name: 'last_name',
   email: 'email',
   phone_number: 'phone_number',
-  password: 'password'
+  password: 'password',
+  session_token: 'session_token'
 };
 
 exports.Prisma.SortOrder = {
