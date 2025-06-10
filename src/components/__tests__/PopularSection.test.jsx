@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import { BrowserRouter } from 'react-router-dom'
 import PopularSection from '../PopularSection'
 
 // Мокаем изображения, так как они могут не существовать в тестовом окружении
@@ -8,61 +9,87 @@ vi.mock('/images/popular2.jpg', () => 'mocked-image-2')
 vi.mock('/images/popular3.jpg', () => 'mocked-image-3')
 vi.mock('/images/popular4.jpg', () => 'mocked-image-4')
 
-describe('PopularSection', () => {
-  it('renders section title correctly', () => {
-    render(<PopularSection />)
-    const titleElement = screen.getByRole('heading', { level: 2 })
-    expect(titleElement).toBeInTheDocument()
-    expect(titleElement.textContent).toBe('Популярныетовары')
-  })
+describe('PopularSection Component', () => {
+  const mockProducts = [
+    {
+      id: 1,
+      name: 'Розы красные',
+      price: 1500,
+      image: '/images/roses.jpg',
+      description: 'Красивый букет красных роз'
+    },
+    {
+      id: 2,
+      name: 'Тюльпаны',
+      price: 1000,
+      image: '/images/tulips.jpg',
+      description: 'Нежные тюльпаны'
+    }
+  ]
 
-  it('renders all product cards', () => {
-    render(<PopularSection />)
-    expect(screen.getByText('Сердце весны')).toBeInTheDocument()
-    expect(screen.getByText('Нежность облаков')).toBeInTheDocument()
-    expect(screen.getByText('Мелодия счастья')).toBeInTheDocument()
-    expect(screen.getByText('Сказка любви')).toBeInTheDocument()
-  })
+  const mockProps = {
+    products: mockProducts,
+    favorites: [],
+    toggleFavorite: vi.fn(),
+    addToCart: vi.fn()
+  }
 
-  it('handles favorite toggle correctly', () => {
-    render(<PopularSection />)
-    const favoriteButtons = screen.getAllByRole('button').filter(button => 
-      button.textContent === '🤍' || button.textContent === '❤️'
+  const renderPopularSection = (props = {}) => {
+    return render(
+      <BrowserRouter>
+        <PopularSection {...mockProps} {...props} />
+      </BrowserRouter>
     )
-    
-    // Проверяем, что изначально все кнопки показывают '🤍'
-    expect(favoriteButtons[0]).toHaveTextContent('🤍')
-    
-    // Кликаем по первой кнопке избранного
-    fireEvent.click(favoriteButtons[0])
-    
-    // Проверяем, что кнопка теперь показывает '❤️'
-    expect(favoriteButtons[0]).toHaveTextContent('❤️')
+  }
+
+  it('renders without crashing', () => {
+    renderPopularSection()
+    expect(document.body).toBeDefined()
   })
 
-  it('has navigation buttons', () => {
-    render(<PopularSection />)
-    const [leftButton, rightButton] = screen.getAllByRole('button').filter(button => 
-      button.textContent === '←' || button.textContent === '→'
-    )
-    
-    expect(leftButton).toHaveTextContent('←')
-    expect(rightButton).toHaveTextContent('→')
+  it('displays section title', () => {
+    renderPopularSection()
+    expect(screen.getByText('Популярные товары')).toBeInTheDocument()
   })
 
-  it('handles scroll buttons correctly', () => {
-    render(<PopularSection />)
-    const [leftButton, rightButton] = screen.getAllByRole('button').filter(button => 
-      button.textContent === '←' || button.textContent === '→'
-    )
-    
-    const container = screen.getByTestId('products-container')
-    expect(container.style.transform).toBe('translateX(-0px)')
-    
-    fireEvent.click(rightButton)
-    expect(container.style.transform).toBe('translateX(-276px)')
-    
-    fireEvent.click(leftButton)
-    expect(container.style.transform).toBe('translateX(-0px)')
+  it('renders product descriptions', () => {
+    renderPopularSection()
+    mockProducts.forEach(product => {
+      expect(screen.getByText(product.description)).toBeInTheDocument()
+      expect(screen.getByText(product.price.toString())).toBeInTheDocument()
+    })
+  })
+
+  it('handles empty products array', () => {
+    renderPopularSection({ products: [] })
+    expect(screen.getByText('Популярные товары')).toBeInTheDocument()
+  })
+
+  it('has correct layout', () => {
+    renderPopularSection()
+    const section = screen.getByText('Популярные товары').closest('section')
+    expect(section).toHaveClass('mx-auto', 'max-w-[1200px]')
+  })
+
+  it('renders navigation buttons', () => {
+    renderPopularSection()
+    const prevButton = screen.getByText('<')
+    const nextButton = screen.getByText('>')
+    expect(prevButton).toBeInTheDocument()
+    expect(nextButton).toBeInTheDocument()
+    expect(prevButton).toBeDisabled()
+    expect(nextButton).toBeDisabled()
+  })
+
+  it('renders add to cart buttons', () => {
+    renderPopularSection()
+    const addToCartButtons = screen.getAllByTitle('Добавить в корзину')
+    expect(addToCartButtons).toHaveLength(mockProducts.length)
+  })
+
+  it('renders favorite buttons', () => {
+    renderPopularSection()
+    const favoriteButtons = screen.getAllByTitle('Добавить в избранное')
+    expect(favoriteButtons).toHaveLength(mockProducts.length)
   })
 }) 

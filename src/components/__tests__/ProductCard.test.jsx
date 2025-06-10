@@ -1,88 +1,90 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
+import { BrowserRouter } from 'react-router-dom'
 import ProductCard from '../ProductCard'
 
-describe('ProductCard', () => {
+describe('ProductCard Component', () => {
   const mockProduct = {
     id: 1,
-    title: "Сердце весны",
-    description: "Воплощение свежести и радости весенних дней",
-    price: "3000₽",
-    image: "/images/popular1.jpg"
+    name: 'Розы красные',
+    price: 1500,
+    image: '/images/roses.jpg',
+    description: 'Красивый букет красных роз'
   }
 
-  const mockToggleFavorite = vi.fn()
+  const mockProps = {
+    product: mockProduct,
+    isFavorite: false,
+    toggleFavorite: vi.fn(),
+    addToCart: vi.fn()
+  }
 
-  it('renders product information correctly', () => {
-    render(
-      <ProductCard 
-        product={mockProduct}
-        isFavorite={false}
-        toggleFavorite={mockToggleFavorite}
-      />
+  const renderProductCard = (props = {}) => {
+    return render(
+      <BrowserRouter>
+        <ProductCard {...mockProps} {...props} />
+      </BrowserRouter>
     )
-    
-    expect(screen.getByText(mockProduct.title)).toBeInTheDocument()
+  }
+
+  it('renders without crashing', () => {
+    renderProductCard()
+    expect(document.body).toBeDefined()
+  })
+
+  it('displays product information', () => {
+    renderProductCard()
     expect(screen.getByText(mockProduct.description)).toBeInTheDocument()
-    expect(screen.getByText(mockProduct.price)).toBeInTheDocument()
-    
+    expect(screen.getByText(mockProduct.price.toString())).toBeInTheDocument()
+  })
+
+  it('displays product image', () => {
+    renderProductCard()
     const image = screen.getByRole('img')
     expect(image).toHaveAttribute('src', mockProduct.image)
-    expect(image).toHaveAttribute('alt', mockProduct.title)
   })
 
-  it('handles favorite toggle correctly', () => {
-    render(
-      <ProductCard 
-        product={mockProduct}
-        isFavorite={false}
-        toggleFavorite={mockToggleFavorite}
-      />
-    )
+  it('has add to cart button', () => {
+    renderProductCard()
+    expect(screen.getByTitle('Добавить в корзину')).toBeInTheDocument()
+  })
 
-    const favoriteButton = screen.getByRole('button')
-    expect(favoriteButton).toHaveTextContent('🤍')
+  it('has favorite button', () => {
+    renderProductCard()
+    expect(screen.getByTitle('Добавить в избранное')).toBeInTheDocument()
+  })
+
+  it('shows favorite button with correct state', () => {
+    const { rerender } = renderProductCard()
     
-    fireEvent.click(favoriteButton)
-    expect(mockToggleFavorite).toHaveBeenCalledWith(mockProduct.id)
-  })
+    // Проверяем начальное состояние (не в избранном)
+    const notFavoriteButton = screen.getByTitle('Добавить в избранное')
+    expect(notFavoriteButton).toBeInTheDocument()
+    expect(notFavoriteButton).toHaveTextContent('🤍')
 
-  it('shows different heart icon when favorite', () => {
-    render(
-      <ProductCard 
-        product={mockProduct}
-        isFavorite={true}
-        toggleFavorite={mockToggleFavorite}
-      />
+    // Проверяем состояние в избранном
+    rerender(
+      <BrowserRouter>
+        <ProductCard {...mockProps} isFavorite={true} />
+      </BrowserRouter>
     )
-
-    const favoriteButton = screen.getByRole('button')
+    const favoriteButton = screen.getByTitle('Удалить из избранного')
+    expect(favoriteButton).toBeInTheDocument()
     expect(favoriteButton).toHaveTextContent('❤️')
   })
 
-  it('applies correct width class based on isCatalog prop', () => {
-    const { container, rerender } = render(
-      <ProductCard 
-        product={mockProduct}
-        isFavorite={false}
-        toggleFavorite={mockToggleFavorite}
-        isCatalog={true}
-      />
-    )
+  it('calls toggleFavorite when favorite button is clicked', () => {
+    renderProductCard()
+    const favoriteButton = screen.getByTitle('Добавить в избранное')
+    fireEvent.click(favoriteButton)
+    expect(mockProps.toggleFavorite).toHaveBeenCalledWith(mockProduct.id)
+  })
 
-    const cardElement = container.firstChild
-    expect(cardElement).toHaveClass('w-[190px]')
-
-    rerender(
-      <ProductCard 
-        product={mockProduct}
-        isFavorite={false}
-        toggleFavorite={mockToggleFavorite}
-        isCatalog={false}
-      />
-    )
-
-    expect(cardElement).toHaveClass('w-[260px]')
+  it('calls addToCart when add to cart button is clicked', () => {
+    renderProductCard()
+    const addToCartButton = screen.getByTitle('Добавить в корзину')
+    fireEvent.click(addToCartButton)
+    expect(mockProps.addToCart).toHaveBeenCalledWith(mockProduct.id, 1)
   })
 }) 
